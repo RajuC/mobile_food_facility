@@ -9,7 +9,6 @@ To start your Phoenix server:
 
 
 More Developments
-  * Search Bar can be added for places and food items
   * Various Checkboxes can be added for the approved facilites, expiration_date and facility type 
   * link to google maps can be added using the lat and lon
 

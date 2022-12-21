@@ -1,18 +1,21 @@
+
+<nav>
 <h1>Listing Facilities</h1>
-
-<%= if @live_action in [:new, :edit] do %>
-  <.modal return_to={Routes.facility_index_path(@socket, :index)}>
-    <.live_component
-      module={MobileFoodFacilityWeb.FacilityLive.FormComponent}
-      id={@facility.id || :new}
-      title={@page_title}
-      action={@live_action}
-      facility={@facility}
-      return_to={Routes.facility_index_path(@socket, :index)}
-    />
-  </.modal>
-<% end %>
-
+   <ul>
+      <li>
+      <%= form_for :search_food, "#", [phx_submit: "search"], fn f -> %>
+      <%= text_input f, :query %>
+      <%= submit "Find Nearby Food" %>
+    <% end %>
+      </li>
+      <li>
+      <%= form_for :search_places, "#", [phx_submit: "search"], fn f -> %>
+      <%= text_input f, :query %>
+      <%= submit "Find Nearby Food Places" %>
+    <% end %>
+      </li>
+    </ul>
+</nav>
 
 <table>
   <thead>
@@ -37,8 +40,6 @@
 
         <td>
           <span><%= live_redirect "Show", to: Routes.facility_show_path(@socket, :show, facility) %></span>
-          <span><%= live_patch "Edit", to: Routes.facility_index_path(@socket, :edit, facility) %></span>
-          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: facility.id, data: [confirm: "Are you sure?"] %></span>
         </td>
       </tr>
     <% end %>

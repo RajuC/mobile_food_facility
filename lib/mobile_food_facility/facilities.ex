@@ -8,6 +8,8 @@ defmodule MobileFoodFacility.Facilities do
 
   alias MobileFoodFacility.Facilities.Facility
 
+  import Ecto.Query, only: [from: 2]
+
   @doc """
   Returns the list of facilities.
 
@@ -100,6 +102,25 @@ defmodule MobileFoodFacility.Facilities do
   """
   def change_facility(%Facility{} = facility, attrs \\ %{}) do
     Facility.changeset(facility, attrs)
+  end
+
+
+  def search_food(search_food_term) do
+    food_term = "%#{search_food_term}%"
+    query =
+    from f in Facility,
+    where: ilike(f.food_items, ^food_term)
+    Repo.all(query)
+  end
+
+  def search_places(search_place_term) do
+    place_term = "%#{search_place_term}%"
+    query =
+    from f in Facility,
+    where: ilike(f.address, ^place_term),
+    or_where: ilike(f.location_description, ^place_term)
+    Repo.all(query)
+
   end
 
 end

@@ -33,6 +33,27 @@ defmodule MobileFoodFacilityWeb.FacilityLive.Index do
   end
 
 
+  def handle_event("search", %{"search_food" => %{"query" => search_term}}, socket) do
+    socket =
+      socket
+      |> assign(:page_title, "Listing Facilities")
+      |> assign(:facilities,  Facilities.search_food(search_term))
+      |> assign(:facility, nil)
+
+    {:noreply, socket}
+
+  end
+
+  def handle_event("search", %{"search_places" => %{"query" => search_term}}, socket) do
+    socket =
+      socket
+      |> assign(:page_title, "Listing Facilities")
+      |> assign(:facilities,  Facilities.search_places(search_term))
+      |> assign(:facility, nil)
+
+  {:noreply, socket}
+  end
+
   
   @impl true
   def handle_event("delete", %{"id" => id}, socket) do
