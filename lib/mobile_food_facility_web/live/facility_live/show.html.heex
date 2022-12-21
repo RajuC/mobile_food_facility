@@ -1,0 +1,166 @@
+<h1>Show Facility</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.facility_show_path(@socket, :show, @facility)}>
+    <.live_component
+      module={MobileFoodFacilityWeb.FacilityLive.FormComponent}
+      id={@facility.id}
+      title={@page_title}
+      action={@live_action}
+      facility={@facility}
+      return_to={Routes.facility_show_path(@socket, :show, @facility)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Location:</strong>
+    <%= @facility.location_id %>
+  </li>
+
+  <li>
+    <strong>Applicant:</strong>
+    <%= @facility.applicant %>
+  </li>
+
+  <li>
+    <strong>Type:</strong>
+    <%= @facility.type %>
+  </li>
+
+  <li>
+    <strong>Cnn:</strong>
+    <%= @facility.cnn %>
+  </li>
+
+  <li>
+    <strong>Location description:</strong>
+    <%= @facility.location_description %>
+  </li>
+
+  <li>
+    <strong>Address:</strong>
+    <%= @facility.address %>
+  </li>
+
+  <li>
+    <strong>Block lot:</strong>
+    <%= @facility.block_lot %>
+  </li>
+
+  <li>
+    <strong>Block:</strong>
+    <%= @facility.block %>
+  </li>
+
+  <li>
+    <strong>Lot:</strong>
+    <%= @facility.lot %>
+  </li>
+
+  <li>
+    <strong>Permit:</strong>
+    <%= @facility.permit %>
+  </li>
+
+  <li>
+    <strong>Status:</strong>
+    <%= @facility.status %>
+  </li>
+
+  <li>
+    <strong>Food items:</strong>
+    <%= @facility.food_items %>
+  </li>
+
+  <li>
+    <strong>X:</strong>
+    <%= @facility.x %>
+  </li>
+
+  <li>
+    <strong>Y:</strong>
+    <%= @facility.y %>
+  </li>
+
+  <li>
+    <strong>Latitude:</strong>
+    <%= @facility.latitude %>
+  </li>
+
+  <li>
+    <strong>Longitude:</strong>
+    <%= @facility.longitude %>
+  </li>
+
+  <li>
+    <strong>Schedule:</strong>
+    <%= @facility.schedule %>
+  </li>
+
+  <li>
+    <strong>Days hours:</strong>
+    <%= @facility.days_hours %>
+  </li>
+
+  <li>
+    <strong>Noi sent date:</strong>
+    <%= @facility.noi_sent_date %>
+  </li>
+
+  <li>
+    <strong>Approved date:</strong>
+    <%= @facility.approved_date %>
+  </li>
+
+  <li>
+    <strong>Received day:</strong>
+    <%= @facility.received_day %>
+  </li>
+
+  <li>
+    <strong>Prior permit:</strong>
+    <%= @facility.prior_permit %>
+  </li>
+
+  <li>
+    <strong>Expiration date:</strong>
+    <%= @facility.expiration_date %>
+  </li>
+
+  <li>
+    <strong>Location:</strong>
+    <%= @facility.location %>
+  </li>
+
+  <li>
+    <strong>Fire prevention districts count:</strong>
+    <%= @facility.fire_prevention_districts_count %>
+  </li>
+
+  <li>
+    <strong>Police districts count:</strong>
+    <%= @facility.police_districts_count %>
+  </li>
+
+  <li>
+    <strong>Supervisor districts count:</strong>
+    <%= @facility.supervisor_districts_count %>
+  </li>
+
+  <li>
+    <strong>Zip codes:</strong>
+    <%= @facility.zip_codes %>
+  </li>
+
+  <li>
+    <strong>Old neighborhoods count:</strong>
+    <%= @facility.old_neighborhoods_count %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.facility_show_path(@socket, :edit, @facility), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.facility_index_path(@socket, :index) %></span>
