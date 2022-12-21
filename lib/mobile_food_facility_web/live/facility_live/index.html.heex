@@ -3,14 +3,14 @@
 <h1>Listing Facilities</h1>
    <ul>
       <li>
-      <%= form_for :search_food, "#", [phx_submit: "search"], fn f -> %>
-      <%= text_input f, :query %>
+      <%= form_for :search_food, "#", [phx_submit: "search", phx_change: "search"], fn f -> %>
+      <%= text_input f, :query, autocomplete: "off" %>
       <%= submit "Find Nearby Food" %>
     <% end %>
       </li>
       <li>
-      <%= form_for :search_places, "#", [phx_submit: "search"], fn f -> %>
-      <%= text_input f, :query %>
+      <%= form_for :search_places, "#", [phx_submit: "search", phx_change: "search"], fn f -> %>
+      <%= text_input f, :query, autocomplete: "off" %>
       <%= submit "Find Nearby Food Places" %>
     <% end %>
       </li>

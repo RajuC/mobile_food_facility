@@ -22,57 +22,6 @@ defmodule MobileFoodFacilityWeb.FacilityLiveTest do
       assert html =~ "Listing Facilities"
       assert html =~ facility.address
     end
-
-    test "saves new facility", %{conn: conn} do
-      {:ok, index_live, _html} = live(conn, Routes.facility_index_path(conn, :index))
-
-      assert index_live |> element("a", "New Facility") |> render_click() =~
-               "New Facility"
-
-      assert_patch(index_live, Routes.facility_index_path(conn, :new))
-
-      assert index_live
-             |> form("#facility-form", facility: @invalid_attrs)
-             |> render_change() =~ "can&#39;t be blank"
-
-      {:ok, _, html} =
-        index_live
-        |> form("#facility-form", facility: @create_attrs)
-        |> render_submit()
-        |> follow_redirect(conn, Routes.facility_index_path(conn, :index))
-
-      assert html =~ "Facility created successfully"
-      assert html =~ "some address"
-    end
-
-    test "updates facility in listing", %{conn: conn, facility: facility} do
-      {:ok, index_live, _html} = live(conn, Routes.facility_index_path(conn, :index))
-
-      assert index_live |> element("#facility-#{facility.id} a", "Edit") |> render_click() =~
-               "Edit Facility"
-
-      assert_patch(index_live, Routes.facility_index_path(conn, :edit, facility))
-
-      assert index_live
-             |> form("#facility-form", facility: @invalid_attrs)
-             |> render_change() =~ "can&#39;t be blank"
-
-      {:ok, _, html} =
-        index_live
-        |> form("#facility-form", facility: @update_attrs)
-        |> render_submit()
-        |> follow_redirect(conn, Routes.facility_index_path(conn, :index))
-
-      assert html =~ "Facility updated successfully"
-      assert html =~ "some updated address"
-    end
-
-    test "deletes facility in listing", %{conn: conn, facility: facility} do
-      {:ok, index_live, _html} = live(conn, Routes.facility_index_path(conn, :index))
-
-      assert index_live |> element("#facility-#{facility.id} a", "Delete") |> render_click()
-      refute has_element?(index_live, "#facility-#{facility.id}")
-    end
   end
 
   describe "Show" do
